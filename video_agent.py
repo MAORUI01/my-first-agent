@@ -3,7 +3,7 @@ import base64
 import cv2
 from PIL import Image
 
-os.environ["ZHIPUAI_API_KEY"] = "f02ec7a8462b4c1880dd10ae6a59cb20.2XZWHPVxAeMQV10J"
+os.environ["ZHIPUAI_API_KEY"] = os.getenv("ZHIPUAI_API_KEY", "your-zhipu-api-key")
 
 from zhipuai import ZhipuAI
 

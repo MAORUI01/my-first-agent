@@ -24,7 +24,7 @@ if hasattr(sys, 'setdefaultencoding'):
 # ============================================================
 # 配置 DeepSeek API
 # ============================================================
-os.environ["OPENAI_API_KEY"] = "sk-1e55ff17d380430e9ed6d26dfd09a7ed"
+os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY", "your-deepseek-api-key")
 os.environ["OPENAI_BASE_URL"] = "https://api.deepseek.com/v1"
 os.environ["OPENAI_MODEL_NAME"] = "deepseek-chat"
 
