@@ -1,9 +1,22 @@
 import streamlit as st
 import os
 
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY", "your-deepseek-api-key")
-os.environ["OPENAI_BASE_URL"] = "https://api.deepseek.com/v1"
-os.environ["OPENAI_MODEL_NAME"] = "deepseek-chat"
+# ============================================================
+# API Key 读取顺序：
+# 1. 本地开发 → .env 文件
+# 2. Streamlit Cloud → st.secrets（在后台设置）
+# ============================================================
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
+# 优先用 st.secrets（Streamlit Cloud），回退到 os.getenv（本地）
+os.environ["OPENAI_API_KEY"] = st.secrets.get("OPENAI_API_KEY", os.getenv("OPENAI_API_KEY", ""))
+os.environ["OPENAI_BASE_URL"] = st.secrets.get("OPENAI_BASE_URL", os.getenv("OPENAI_BASE_URL", "https://api.deepseek.com/v1"))
+os.environ["OPENAI_MODEL_NAME"] = st.secrets.get("OPENAI_MODEL_NAME", os.getenv("OPENAI_MODEL_NAME", "deepseek-chat"))
 
 from crewai import Agent, Task, Crew
 
