@@ -1,7 +1,9 @@
 streamlit
-crewai
+crewai==0.108.0
 crewai-tools
 langchain
 langchain-openai
 openai
 python-dotenv
+chromadb==0.5.0
+pydantic>=1.10.0,<3
